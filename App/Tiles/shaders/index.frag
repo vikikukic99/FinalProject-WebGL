@@ -13,7 +13,7 @@ vec2 scaleFromCenter(vec2 uv, float scale){
 
 void main(){
   // NORMAL UV
-  vec2 newUv = vUv * 0.6;
+  vec2 newUv = vUv * 0.8;
 
   // SCALED UV
   vec2 scaledUv = scaleFromCenter(vUv, 1.0);

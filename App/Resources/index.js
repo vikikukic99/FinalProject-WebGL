@@ -10,11 +10,8 @@ const ASSETS = [
   { key: 't-5', type: 'texture', path: '/images/t-5.jpg' },
   { key: 't-6', type: 'texture', path: '/images/t-6.jpg' },
   { key: 't-7', type: 'texture', path: '/images/t-7.jpg' },
-  { key: 't-8', type: 'texture', path: '/images/t-8.jpg' },
+  { key: 't-8', type: 'texture', path: '/images/t-8.jpeg' },
   { key: 't-9', type: 'texture', path: '/images/t-9.jpg' },
-  { key: 't-10', type: 'texture', path: '/images/t-10.jpg' },
-  { key: 't-11', type: 'texture', path: '/images/t-11.jpg' },
-  { key: 't-12', type: 'texture', path: '/images/t-12.jpg' },
 ];
 
 class Resources {

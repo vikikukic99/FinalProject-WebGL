@@ -40,9 +40,9 @@ export default class Tiles extends Group {
   }
 
   _init() {
-    const geometry = new PlaneGeometry(1, 1, 40, 40);
+    const geometry = new PlaneGeometry(1, 1, 80, 80);
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 9; i++) {
       // LOAD MAP
       const map = resources.get(`t-${i + 1}`);
       map.colorSpace = SRGBColorSpace;
@@ -66,12 +66,15 @@ export default class Tiles extends Group {
       const mesh = new Mesh(geometry, material);
 
       // SCALE
-      const meshWidth = this._width;
-      const meshHeight = this._width / ratio;
+      const scaleMultiplier = 2;  
+
+      const meshWidth = this._width * scaleMultiplier;
+      const meshHeight = (this._width / ratio) * scaleMultiplier;
       mesh.scale.set(meshWidth, meshHeight, 1);
 
+
       // X, Y, Z
-      mesh.position.x = this._width * i * 1.4 + MathUtils.randFloat(60, 80);
+      mesh.position.x = this._width * i * 2.1 + MathUtils.randFloat(80 , 80);
       mesh.position.y = MathUtils.randFloat(-30, 30);
       mesh.position.z = MathUtils.randFloat(-20, 20);
       mesh.userData.destinationPosition = mesh.position.clone();
@@ -93,7 +96,7 @@ export default class Tiles extends Group {
   }
 
   update(delta) {
-    const fixedDelta = 0.015;
+    const fixedDelta = 0.008;
     // CALC SPEED ON X
     this._dragSpeed.current = this._els[0].position.x;
     const speedX = this._dragSpeed.current - this._dragSpeed.prev;
@@ -104,7 +107,7 @@ export default class Tiles extends Group {
       this._holdingSpeed,
       'current',
       this._isDragging ? 1 : 0,
-      0.28,
+      0.40,
       fixedDelta
     );
 
@@ -123,7 +126,7 @@ export default class Tiles extends Group {
         el.position,
         'x',
         el.userData.destinationPosition.x,
-        0.28,
+        0.40,
         fixedDelta
       );
 
@@ -132,7 +135,7 @@ export default class Tiles extends Group {
         ? el.userData.dragPosition.z
         : el.userData.initialPosition.z;
 
-      damp(el.position, 'z', zTarget, 0.28, fixedDelta);
+      damp(el.position, 'z', zTarget, 0.40, fixedDelta);
     });
 
     this._dragSpeed.prev = this._dragSpeed.current;

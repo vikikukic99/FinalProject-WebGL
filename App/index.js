@@ -12,11 +12,13 @@ import {
 } from 'three';
 import Stats from 'stats.js';
 import Tiles from './Tiles';
-import resouces from './Resources';
+import resources from './Resources';
+import FallingLetters from './FallingLetters';
 
 export default class App {
   constructor() {
     this._init();
+    this.isScrollingDown = false;
   }
 
   async _init() {
@@ -31,11 +33,11 @@ export default class App {
     const aspect = window.innerWidth / window.innerHeight;
 
     this._camera = new PerspectiveCamera(60, aspect, 1, 1000);
-    this._camera.position.z = 100;
+    this._camera.position.z = 200;
     this._resize();
 
     // LOAD EVERYTHING
-    await resouces.load();
+    await resources.load();
 
     // SCENE
     this._scene = new Scene();
@@ -43,6 +45,10 @@ export default class App {
 
     // PLANES
     this._initScene();
+
+    // FALLING LETTERS
+    this._fallingLetters = new FallingLetters();
+    this._scene.add(this._fallingLetters);
 
     // STATS
     this._stats = new Stats();
@@ -54,6 +60,9 @@ export default class App {
     this._animate();
 
     this._initEvents();
+
+    // SCROLL EVENT
+    window.addEventListener('wheel', this._onWheel.bind(this));
   }
 
   _initScene() {
@@ -87,10 +96,30 @@ export default class App {
     this._stats.begin();
 
     this._clock.delta = this._clock.getDelta();
-    this._tiles.update();
 
+    this._tiles.update();
+    this._fallingLetters.update();
+    
     this._gl.render(this._scene, this._camera);
     this._stats.end();
     window.requestAnimationFrame(this._animate.bind(this));
   }
+
+  _onWheel(event) {
+    const deltaY = event.deltaY; // The vertical scroll amount
+
+    // Check if scrolling down
+    if (deltaY > 0) {
+      if (!this.isScrollingDown) {
+        // Start falling letters if not already started
+        this.isScrollingDown = true;
+      }
+      this._fallingLetters.update(); // Update the position of letters
+    } else {
+      // Optionally handle scrolling up
+      // e.g., you could pause or reverse the movement
+    }
+  }
+
+
 }

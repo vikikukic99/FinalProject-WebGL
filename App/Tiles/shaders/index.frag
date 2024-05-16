@@ -13,7 +13,7 @@ vec2 scaleFromCenter(vec2 uv, float scale){
 
 void main(){
   // NORMAL UV
-  vec2 newUv = vUv * 0.8;
+  vec2 newUv = vUv * 0.6;
 
   // SCALED UV
   vec2 scaledUv = scaleFromCenter(vUv, 1.0);
@@ -40,7 +40,6 @@ void main(){
 
   finalColor = vec3(red, green, blue);
   finalColor = mix(map.rgb, finalColor, d);
-
 
   gl_FragColor = map;
   gl_FragColor = vec4(map.rgb, 1.0);

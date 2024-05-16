@@ -26,7 +26,6 @@ export default class FallingLetters extends Group {
         speed: MathUtils.randFloat(0.5, 2), // random falling speed
       };
 
-      // You need to sync the geometry after setting properties
       textMesh.sync();
 
       this.letters.push(textMesh);

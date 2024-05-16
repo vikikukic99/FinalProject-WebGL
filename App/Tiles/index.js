@@ -96,11 +96,10 @@ export default class Tiles extends Group {
   }
 
   update(delta) {
-    const fixedDelta = 0.008;
+    const fixedDelta = 0.015;
     // CALC SPEED ON X
     this._dragSpeed.current = this._els[0].position.x;
     const speedX = this._dragSpeed.current - this._dragSpeed.prev;
-    console.log(speedX);
 
     // CALC SPEED FOR HOLDING
     damp(

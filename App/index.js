@@ -37,7 +37,8 @@ export default class App {
     this._resize();
 
     // LOAD EVERYTHING
-    await resources.load();
+    await resources.load(); 
+
 
     // SCENE
     this._scene = new Scene();
@@ -116,8 +117,6 @@ export default class App {
       }
       this._fallingLetters.update(); // Update the position of letters
     } else {
-      // Optionally handle scrolling up
-      // e.g., you could pause or reverse the movement
     }
   }
 

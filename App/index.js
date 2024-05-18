@@ -100,6 +100,7 @@ export default class App {
 
     this._tiles.update();
     this._fallingLetters.update();
+    //this._background.update();
     
     this._gl.render(this._scene, this._camera);
     this._stats.end();
